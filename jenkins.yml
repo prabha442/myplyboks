@@ -1,0 +1,32 @@
+- name: create jenkins cicd setup
+  hosts: web
+  tasks:
+    - name: install sw for jenkins
+      yum:
+        name: "{{item.a}}"
+        state: "{{item.b}}"
+        update_cache: "{{item.c}}"
+      with_items:
+        - {a: git,b: present,c: yes}
+        - {a: maven,b: present,c: no}
+        - {a: java,b: present,c: yes}
+
+    - name: install jenkins war
+      get_url:
+        url: https://get.jenkins.io/war-stable/2.319.3/jenkins.war
+        dest: /tmp
+- name: install tomact on prod server
+  hosts: prod
+  tasks:
+    - name: install tomcat
+      yum:
+        name: "{{item}}"
+        state: present
+        update_cache: no
+      with_items:
+        - tomcat
+
+    - name: copy user.xml
+      copy:
+        src: tomcat-users.xml
+        dest: /etc/tomcat

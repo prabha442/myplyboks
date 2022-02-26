@@ -1,0 +1,17 @@
+- name: create hnadlers
+  hosts: app
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: present
+    - name: change content
+      copy:
+        content: "hellowww\n"
+        dest: /usr/share/httpd/noindex/index.html
+      notify: restart httpd
+  handlers:
+    - name: restart httpd
+      service:
+        name: httpd
+        state: restarted

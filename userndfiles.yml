@@ -1,0 +1,17 @@
+- name: creating user and files/dires
+  hosts: web
+  tasks:
+    - name: create user
+      user:
+        name: "{{a}}"
+        password: "{{b}}"
+        home: "{{c}}"
+
+    - name: create file/dir
+      file:
+        name: "{{d}}"
+        state: "{{e}}"
+        owner: "{{f}}"
+        group: "{{g}}"
+        mode: "{{h}}"
+

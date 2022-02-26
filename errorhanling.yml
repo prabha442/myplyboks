@@ -1,0 +1,15 @@
+- name: error handling
+  hosts: web
+  tasks:
+    - block:
+        - name: install tomcat
+          yum:
+            name: tomca
+            state: present
+
+      rescue:
+        - name: install git
+
+          yum:
+            name: git
+            state: present

@@ -1,0 +1,5 @@
+- name: include module using 
+  hosts: prod
+  tasks:
+    - name: call chiled playbook
+      include: chiled.yml

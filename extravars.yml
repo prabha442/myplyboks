@@ -1,0 +1,9 @@
+- name: install/uninstall softwaters
+  hosts: web
+  tasks:
+    - name: install and uninstall 
+      yum:
+        name: "{{a}}"
+        state: "{{b}}"
+        update_cache: "{{c}}"
+

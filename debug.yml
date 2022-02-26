@@ -1,0 +1,17 @@
+- name: create user and display output
+  hosts: web
+  tasks:
+    - name: cretae user
+      user:
+        name: docker
+        password: docker123
+        home: /home/docker
+        uid: 1212
+    - name: show the files
+      shell: "ls -la"
+
+      register: a
+
+    - name: display the output
+      debug:
+        var: a

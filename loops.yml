@@ -1,0 +1,14 @@
+- name: install multiple sws
+  hosts: app
+  tasks:
+    - name: install s/ws
+      yum:
+        name: "{{item.a}}"
+        state: "{{item.b}}"
+        update_cache: "{{item.c}}"
+      with_items:
+        - {a: tree,b: absent,c: no}
+        - {a: git,b: absent,c: no}
+        - {a: java,b: absent,c: no}
+        - {a: maven,b: absent,c: no}
+      

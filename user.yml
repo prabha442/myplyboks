@@ -1,0 +1,10 @@
+- name: creating user
+  hosts: web
+  tasks:
+    - name: create user baby
+      user:
+        name: baby
+        password: baby123
+        uid: 1111
+        home: /home/baby
+        shell: /bin/bash

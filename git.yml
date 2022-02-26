@@ -1,0 +1,13 @@
+- name: installing git and cloning repo
+  hosts: web
+  tasks:
+    - name: install git
+      yum:
+        name: git
+        state: present
+
+
+    - name: cloning repo
+      git:
+        repo: https://github.com/prabha442/my-frist-project.git
+        dest: /opt/git

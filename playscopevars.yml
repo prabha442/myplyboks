@@ -1,0 +1,12 @@
+- name: install tomcat
+  hosts: web
+  vars:
+    - a: tomcat
+    - b: present
+    - c: yes
+  tasks:
+    - name: install tomcat
+      yum:
+        name: "{{a}}"
+        state: "{{b}}"
+        update_cache: "{{c}}"

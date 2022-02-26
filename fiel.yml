@@ -1,0 +1,18 @@
+- name: creting files and directorys
+  hosts: web
+  tasks:
+    - name: creating file web.txt
+      file:
+        name: web.txt
+        state: touch
+        owner: root
+        group: raju
+        mode: 400
+
+    - name: creating directory dir123
+      file:
+        name: dir123
+        state: directory
+        owner: root
+        group: raju
+        mode: 400

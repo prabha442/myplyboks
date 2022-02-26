@@ -1,0 +1,21 @@
+- name: install httpd and change index.html
+  hosts: web
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: present
+
+    - name: change the index.html
+      copy:
+        content: "hi dev,test,prod\n"
+        dest: /usr/share/httpd/noindex/index.html
+
+    - name: restarted httpd
+      service:
+        name: httpd
+        state: restarted
+    
+   - name: check url
+     uri:
+       url: http://15.206.92.62:80

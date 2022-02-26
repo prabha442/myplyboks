@@ -1,0 +1,24 @@
+- name: install tomcat and configure
+  hosts: app
+  tasks:
+    - name: install tomcat
+      yum:
+        name: tomcat
+        state: present
+        update_cache: yes
+
+    - name: replace port
+      replace:
+        regexp: 9090
+        replace: 9081
+        path: /etc/tomcat/server.xml
+
+    - name: restart tomcat
+      service:
+        name: tomcat
+        state: restarted
+
+    - name: check url
+      uri:
+        url: https://172.31.42.71:9090
+        status_code: -1

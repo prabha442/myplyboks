@@ -1,0 +1,20 @@
+- name: create users and files /dirs
+  hosts: app
+  tasks:
+    - name: create users
+      user:
+        name: "{{item.a}}"
+        password: "{{item.b}}"
+        home: "{{item.c}}"
+      with_items:
+        - {a: apple,b: apple123,c: /home/apple}
+        - {a: mango,b: mango123,c: /home/mango}
+    - name: create files / dirs
+      file:
+        name: "{{item.a}}"
+        state: "{{item.b}}"
+      with_items:
+        - {a: apple.txt,b: touch}
+        - {a: mango,b: directory}
+
+

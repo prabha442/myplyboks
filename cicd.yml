@@ -1,0 +1,24 @@
+- name: install sw/s
+  hosts: web
+  tasks:
+    - name: install sw/s
+      yum:
+        name: "{{a}}"
+        state: present
+
+      with_items:
+        - java
+        - git
+        - maven
+
+- name: get the code from github
+  hosts: prod
+  tasks:
+    - name: get the code
+      git:
+        repo: https://github.com/prabha442/maven-web-application.git
+        dest: /home/ec2-user/git-project
+
+    - name: build the code
+      shell: cd /home/ec2-user/git-project;mvn package
+      

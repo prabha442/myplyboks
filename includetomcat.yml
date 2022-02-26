@@ -1,0 +1,10 @@
+- name: configure tomcat using child playbooks
+  hosts: app
+  tasks:
+    - name: configure tomcat
+      include: "{{item}}"
+      with_items:
+        - install-tomcat.yml
+        - chngeport.yml
+        - restart-tomcat.yml
+        - check-url.yml
